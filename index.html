@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ro">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Modificarea formei</title>
+	</head>
+	<body>
+		<div class="content">
+			<h2>Modificarea dimensiunii formei geometrice</h2>
+			<label for="gamma">Unghiul gamma (grade):</label>
+			<input type="range" id="gamma" min="0" max="180" value="90">
+			<span id="gammaValue">90°</span>
+			<div class="shape" id="shape"></div>
+            <canvas id="canvas" height="400", width="400"></canvas>
+		</div>
+		<style>
+			.content {
+				text-align: center;
+				margin-top: 50px;
+			}
+
+			.shape {
+				background-color: #3498db;
+				margin: 50px auto;
+				border-radius: 50%;
+				/* cerc */
+				width: 100px;
+				/* lăţimea inițială */
+				height: 100px;
+				/* înălţimea inițială */
+				transition: all 0.3s;
+				/* animație pentru schimbarea dimensiunii */
+			}
+
+			input[type="range"] {
+				width: 80%;
+			}
+
+			span {
+				font-size: 18px;
+				margin-left: 10px;
+			}
+		</style>
+		<script>
+			document.getElementById("gamma").addEventListener("input", function(e) {
+				const gammaValue = e.target.value;
+				document.getElementById("gammaValue").innerText = gammaValue + "°";
+				const newSize = 100 + (gammaValue / 180) * 200;
+				const shape = document.getElementById("shape");
+				shape.style.width = newSize + "px";
+				shape.style.height = newSize + "px";
+			});
+		</script>
+	</body>
+</html>
